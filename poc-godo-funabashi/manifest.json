@@ -1,0 +1,25 @@
+{
+  "name": "配合投入 記録PoC",
+  "short_name": "配合PoC",
+  "description": "オフライン対応 検証プロダクト（合同製鐵 船橋事業所向け PoC・ダミーデータのみ）",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#2f6f4f",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

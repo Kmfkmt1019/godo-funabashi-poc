@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>配合投入 記録PoC</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#2f6f4f">
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>配合投入 記録PoC（ダミーデータ／CP3非接続）</h1>
+  <nav class="tabs">
+    <button data-screen="screenA" class="active">A: 配合予定</button>
+    <button data-screen="screenB">B: 投入入力</button>
+    <button data-screen="screenC">C: 同期状況</button>
+  </nav>
+</header>
+
+<main>
+  <div id="banner" class="banner offline">オフライン</div>
+
+  <!-- 画面A: 当日の配合予定 -->
+  <section id="screenA" class="screen active">
+    <div class="last-fetched" id="lastFetched">最終取得: -</div>
+    <div id="masterList"></div>
+  </section>
+
+  <!-- 画面B: 投入入力 -->
+  <section id="screenB" class="screen">
+    <div class="pending-count zero" id="pendingCountB">未送信 0 件</div>
+
+    <div class="field">
+      <label>① バケット番号</label>
+      <div class="btn-group" id="bucketButtons">
+        <button data-bucket="1">1</button>
+        <button data-bucket="2">2</button>
+        <button data-bucket="3">3</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>② 品種</label>
+      <select id="materialSelect">
+        <option value="鉄スクラップA">鉄スクラップA</option>
+        <option value="鉄スクラップB">鉄スクラップB</option>
+        <option value="副原料C">副原料C</option>
+        <option value="副原料D">副原料D</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>③ 重量 (kg)</label>
+      <input type="number" id="weightInput" placeholder="例: 2000" inputmode="numeric">
+    </div>
+
+    <button class="primary" id="submitBtn">登録</button>
+    <div id="submitMsg" style="margin-top:8px; color:#1a6b2c; font-size:14px;"></div>
+  </section>
+
+  <!-- 画面C: 同期状況 -->
+  <section id="screenC" class="screen">
+    <div class="pending-count zero" id="pendingCountC">未送信 0 件</div>
+    <div class="last-fetched" id="lastSynced">最後に送信できた時刻: -</div>
+    <div id="staleWarning" style="display:none;" class="warn-stale">
+      ⚠ 未送信データが30分以上滞留しています
+    </div>
+
+    <button class="primary" id="syncNowBtn">いま送る</button>
+    <button class="secondary" id="csvExportBtn">未送信を CSV で書き出す</button>
+
+    <h3 style="margin-top:20px;">未送信一覧</h3>
+    <div class="card" id="pendingList"><div class="queue-item">なし</div></div>
+
+    <h3>送信済み件数: <span id="sentCount">0</span> 件</h3>
+
+    <details class="debug">
+      <summary>デバッグログ（永続化の許可状況など）</summary>
+      <pre class="debug-log" id="debugLog"></pre>
+    </details>
+
+    <p style="margin-top:16px;"><a href="./weight-mock.html">→ 重量モック（任意・突合演出用）を開く</a></p>
+  </section>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="./js/db.js"></script>
+<script src="./js/api.js"></script>
+<script src="./js/sync.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+/* デザインは検証対象外（指示書 §6）。文字が読めて操作できれば十分という方針の
+   最小限のスタイル。 */
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f2f2f2;
+  color: #222;
+  font-size: 16px;
+}
+
+header {
+  background: #2f6f4f;
+  color: #fff;
+  padding: 12px 16px;
+}
+
+header h1 {
+  font-size: 18px;
+  margin: 0 0 8px 0;
+}
+
+nav.tabs {
+  display: flex;
+  gap: 4px;
+}
+
+nav.tabs button {
+  flex: 1;
+  padding: 10px 4px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px 6px 0 0;
+  background: #1f4f37;
+  color: #cfe8da;
+}
+
+nav.tabs button.active {
+  background: #fff;
+  color: #2f6f4f;
+  font-weight: bold;
+}
+
+main {
+  padding: 16px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+.banner {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.banner.online { background: #d8f0dc; color: #1a6b2c; }
+.banner.offline { background: #f7d9d9; color: #a11c1c; }
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.card .lot { font-weight: bold; font-size: 16px; }
+.card .sub { color: #555; font-size: 14px; margin-top: 4px; }
+
+.last-fetched {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.btn-group button, select, input[type=number] {
+  font-size: 18px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  background: #fff;
+}
+
+.btn-group button {
+  flex: 1;
+  min-width: 70px;
+}
+
+.btn-group button.selected {
+  background: #2f6f4f;
+  color: #fff;
+  border-color: #2f6f4f;
+}
+
+select, input[type=number] { width: 100%; }
+
+button.primary {
+  width: 100%;
+  font-size: 18px;
+  padding: 14px;
+  background: #2f6f4f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+button.secondary {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px;
+  background: #eee;
+  color: #333;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.pending-count {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px;
+  background: #fff3cd;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.pending-count.zero { background: #d8f0dc; color: #1a6b2c; }
+
+.queue-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.queue-item:last-child { border-bottom: none; }
+
+.warn-stale {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.toast.show { opacity: 1; }
+
+details.debug {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #666;
+}
+
+pre.debug-log {
+  background: #111;
+  color: #9f9;
+  font-size: 11px;
+  padding: 8px;
+  border-radius: 6px;
+  max-height: 160px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}

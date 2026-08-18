@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>重量モック（バケット重量シミュレータ）</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#2f6f4f">
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>バケット重量モック（任意・突合演出用）</h1>
+</header>
+
+<main>
+  <div id="banner" class="banner offline">オフライン</div>
+
+  <div class="card">
+    <p style="margin-top:0;">
+      実測パターン <code>34,900 → 36,900 → 38,500 → 40,100</code>(kg) を再現します。
+      各段差を「投入イベント」としてキューに貯め、通信復帰後にダミーサーバへ送信します。
+      画面Bで同じ重量を入力すると、サーバ側で自動的に突合(matched/要確認)されます。
+    </p>
+
+    <div class="field">
+      <label>対象バケット番号</label>
+      <div class="btn-group" id="mockBucketButtons">
+        <button data-bucket="1">1</button>
+        <button data-bucket="2" class="selected">2</button>
+        <button data-bucket="3">3</button>
+      </div>
+    </div>
+
+    <button class="primary" id="startMockBtn">投入シミュレーション開始</button>
+    <button class="secondary" id="resetMockBtn">状態をリセット</button>
+  </div>
+
+  <div class="pending-count zero" id="mockPendingCount">未送信 0 件</div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">シミュレーションログ</h3>
+    <pre class="debug-log" id="mockLog" style="color:#333; background:#f7f7f7;"></pre>
+  </div>
+
+  <p><a href="./index.html">← 通常の記録アプリ(画面A/B/C)に戻る</a></p>
+
+  <details class="debug">
+    <summary>デバッグログ</summary>
+    <pre class="debug-log" id="debugLog"></pre>
+  </details>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="./js/db.js"></script>
+<script src="./js/api.js"></script>
+<script src="./js/sync.js"></script>
+<script src="./js/weight-mock.js"></script>
+</body>
+</html>
